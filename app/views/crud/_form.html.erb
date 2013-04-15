@@ -1,0 +1,7 @@
+<%= f.error_notification %>
+
+<div class="inputs">
+  <% (resource_class.column_names - ["id", "created_at", "updated_at"] ).each do |column| %>
+    <%= f.input column, :input_html => {:class => "text_field"} %>
+  <%- end -%>
+</div>

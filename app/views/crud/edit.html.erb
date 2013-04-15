@@ -1,0 +1,30 @@
+<% html_options = {:multipart => @multipart} %>
+<% @partial_form ||= "form" %>
+<% @title_form    ||= "#{t("form.edit")} #{t("activerecord.models.#{resource_class}")}" %>
+      
+<div class="title">
+  <h2 class="title"><%= @title_form %></h2>
+</div>
+
+<div class="inner form-horizontal">
+  <%= simple_nested_form_for resource, :url => resource_path, :html => html_options do |f| -%>
+  <%= render :partial => "layouts/error_messages", :locals => {:f => f}  %>
+    <%= render :partial => @partial_form, :locals => {:f => f} %>
+
+    <% f.object.identification_id = current_usuario.id %>
+    <%= f.hidden_field(:identification_id) %>
+
+    <% if content_for?(:form_buttons) %>
+      <%= content_for(:form_buttons) %>
+    <% else %>    
+    <div class="group">
+      <div class="botoes">
+        <button class="button icon approve" type="submit" data-disable-with="<%= t("form.saving") %>">
+          <%= t("form.save", :default => "Save") %>
+        </button>
+        <%= link_to t("form.cancel", :default => "Cancel"), collection_path , :class => "button icon remove danger" %>
+      </div>
+    </div>
+    <% end %>
+  <% end -%>
+</div>

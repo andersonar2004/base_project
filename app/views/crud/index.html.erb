@@ -1,0 +1,45 @@
+<% @title_form     ||= t("activerecord.models.#{resource_class}").pluralize  %>
+<% @action_button = get_default_action_button(@action_button) %>
+
+<div class="title">
+    <h2><%= @title_form %></h2>
+    <div class="botoes">
+    <% if @action_button[:add] and can? :create, resource_class %>
+            <%= link_to "#{t("form.new", :default => "New")}", new_resource_path,  html_options = {:class=> "button icon add"} %>
+      <% end %>
+    </div>
+</div>
+</br>
+
+<div class="inner">
+    <%= render :partial => "filters", :locals => { :collection => collection } %>
+    
+    <!-- Exibição da página atual -->
+    <% if collection.respond_to?(:current_page) && collection.total_count != 0 %>
+      <div class="filtros">
+        <span style="float:right; margin-right: 1%">
+            <%= collection.offset_value + 1 %> - <%= collection.offset_value + collection.length %> de <%= collection.total_count %> <%= t("activerecord.models.#{resource_class}").pluralize %>
+        </span>
+      </div>
+    <% end %>
+
+    <!-- Tabela da listagem -->
+    <%= table_for(collection, :html => {:class => "table"}) do |t|
+      t.data do
+        render(:partial => "table_form", :locals => {:t => t})
+
+        t.cell(:edit,     :heading => "", :cell_html => {:width=>"50px"}) { |u| 
+          link_to 'Editar', edit_resource_path(u), {:class => "button icon edit"} if @action_button[:edit] and can? :update, u
+        } 
+
+        t.cell(:destroy, :heading => "", :cell_html => {:width=>"50px"}){ |u| 
+          link_to 'Apagar', u, method: :delete, data: { confirm: t("form.confirm") }, 
+          class: "button icon trash"   if @action_button[:destroy] and can? :destroy, u
+        } 
+      end
+    end %>
+
+    <!-- Paginação -->
+    <%= paginate collection if collection.respond_to? :current_page %>
+
+</div><!-- INNER #FIM -->

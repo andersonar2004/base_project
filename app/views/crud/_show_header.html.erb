@@ -1,0 +1,13 @@
+<div class="title">
+  <h2 class="title"><%= resource_class.model_name.human.titleize %></h2>
+
+  <div class="botoes">
+    <%= link_to t('form.back'), collection_path, :class => "button icon arrowleft" %>
+    <% if can?(:update, resource) %>
+      <%= link_to t('form.edit'), edit_resource_path, :class => "button icon edit" %>
+    <%end%>
+    <% if can?(:destroy, resource) %>
+      <%= link_to t('form.delete'), resource_path, :method => :delete, :class => "button icon remove danger", :confirm => t('form.confirm') %>
+    <% end %>
+  </div>
+</div>
