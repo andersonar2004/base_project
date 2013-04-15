@@ -11,9 +11,6 @@
   <%= render :partial => "layouts/error_messages", :locals => {:f => f}  %>
     <%= render :partial => @partial_form, :locals => {:f => f} %>
 
-    <% f.object.identification_id = current_usuario.id %>
-    <%= f.hidden_field(:identification_id) %>
-
     <% if content_for?(:form_buttons) %>
       <%= content_for(:form_buttons) %>
     <% else %>    

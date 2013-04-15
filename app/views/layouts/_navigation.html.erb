@@ -1,0 +1,7 @@
+<ul class="nav" >
+  <% if [User].any?{|kclass| can? :read, kclass} %>
+    <%= menu_item("Configuration") do %>
+      <%= menu_item("Users", users_path)        if can? :read, User %>
+    <% end %>
+  <% end %>
+</ul>

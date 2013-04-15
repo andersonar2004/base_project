@@ -2,4 +2,17 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  app:
+    name: Base Project
+    project:
+      mode:
+  form: 
+    save: Save  
+    saving: Saving
+    new: New   
+    delete: Delete 
+    confirm: Confirm
+    signin: Signin
+  activerecord:
+    models:
+      User: User

@@ -1,0 +1,16 @@
+<div class="filtros">
+  <%= search_form_for @q, :url => users_path, :html => { :method => :get } do |f| %>
+
+  <div class="filtro">
+    <%= f.label :email, t("activerecord.attributes.user.email") %>
+    <%= f.text_field :email_cont %>
+  </div>
+
+
+  <div class="botao_filtro"> 
+    <button class="button icon search" type="submit">
+      <%= t("form.filter", :default => "Filter") %>
+    </button>
+  </div>
+<% end %>
+</div>

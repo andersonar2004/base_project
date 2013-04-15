@@ -20,7 +20,7 @@ gem 'kaminari'
 
 # Authentication
 gem 'devise' 
-gem 'rolify' # Roles 
+gem "rolify",        :git => "git://github.com/EppO/rolify.git"
 gem 'cancan' # Rules
 
 gem 'exception_notification'

@@ -1,0 +1,9 @@
+<% unless f.object.errors[:base].empty? %>
+  <% f.object.errors[:base].each do |message| %>
+    <div class="flash alert error">
+      <div >
+        <p>* <%= message %></p>
+      </div>
+    </div>    
+  <% end %>
+<% end %>

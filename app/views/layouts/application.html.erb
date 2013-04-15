@@ -1,14 +1,54 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
   <title>BaseProject</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body class="<%= controller_name %> <%= action_name %>">
+  <header class="navbar navbar-fixed-top header">
+    <nav class="navbar-inner">
+      <div class="container">
+        <%= link_to(t("app.name"), root_path, {:class => "brand"}) %>
+        <% if user_signed_in? %>
+          <%= render 'layouts/navigation' %>
 
-<%= yield %>
+          <div class="menu_user" >
+            <ul>
+              <li class="user"><%= current_user.email %></li>
+              <li class="logout"><%= link_to t("form.logout"), destroy_user_session_path, :method => :delete %></li>
+            </ul>
+          </div>            
+        <%end%>
+      </div>
+    </nav>
+  </header>
 
+  <div id="main" class="main">
+    <div class="container">
+      <div class="content">
+        <div class="row">
+          <div class="span12">
+            <%= render 'layouts/messages' %>
+
+            <%= yield %>
+          </div>
+        </div>
+      </div>
+      
+
+      <div id="blueprint">
+        <%= yield :blueprint %>
+      </div>
+    </div>
+  </div>
+
+  <%= yield :javascript %>
+  
+  <script type="text/javascript" charset="utf-8">
+    $('.dropdown-toggle').dropdown()
+  </script>  
 </body>
 </html>
