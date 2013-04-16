@@ -5,7 +5,7 @@
     <h2><%= @title_form %></h2>
     <div class="botoes">
     <% if @action_button[:add] and can? :create, resource_class %>
-            <%= link_to "#{t("form.new", :default => "New")}", new_resource_path,  html_options = {:class=> "button icon add"} %>
+            <%= link_to "#{t("form.new", :default => "New")}", new_resource_path,  html_options = {:class=> "btn"} %>
       <% end %>
     </div>
 </div>
@@ -29,12 +29,12 @@
         render(:partial => "table_form", :locals => {:t => t})
 
         t.cell(:edit,     :heading => "", :cell_html => {:width=>"50px"}) { |u| 
-          link_to 'Editar', edit_resource_path(u), {:class => "button icon edit"} if @action_button[:edit] and can? :update, u
+          link_to 'Editar', edit_resource_path(u), {:class => "btn btn-mini"} if @action_button[:edit] and can? :update, u
         } 
 
         t.cell(:destroy, :heading => "", :cell_html => {:width=>"50px"}){ |u| 
           link_to 'Apagar', u, method: :delete, data: { confirm: t("form.confirm") }, 
-          class: "button icon trash"   if @action_button[:destroy] and can? :destroy, u
+          class: "btn btn-mini"   if @action_button[:destroy] and can? :destroy, u
         } 
       end
     end %>
