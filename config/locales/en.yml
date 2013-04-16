@@ -9,6 +9,7 @@ en:
   form: 
     save: Save  
     saving: Saving
+    edit: Edit
     new: New   
     delete: Delete 
     confirm: Confirm

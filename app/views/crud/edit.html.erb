@@ -2,7 +2,7 @@
 <% @partial_form ||= "form" %>
 <% @title_form    ||= "#{t("form.edit")} #{t("activerecord.models.#{resource_class}")}" %>
       
-<div class="title">
+<div class="title" >
   <h2 class="title"><%= @title_form %></h2>
 </div>
 
@@ -14,14 +14,11 @@
     <% if content_for?(:form_buttons) %>
       <%= content_for(:form_buttons) %>
     <% else %>    
-    <div class="group">
-      <div class="botoes">
-        <button class="button icon approve" type="submit" data-disable-with="<%= t("form.saving") %>">
-          <%= t("form.save", :default => "Save") %>
-        </button>
-        <%= link_to t("form.cancel", :default => "Cancel"), collection_path , :class => "button icon remove danger" %>
+      <div class="form-actions">
+        <button class="btn btn-primary" type="submit" data-disable-with="<%= t("form.saving") %>" ><%= t("form.save", :default => "Save") %></button>
+
+        <%= link_to t("form.cancel", :default => "Cancel"), collection_path, :class => "btn" %>
       </div>
-    </div>
     <% end %>
   <% end -%>
 </div>
