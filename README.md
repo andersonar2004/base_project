@@ -1,4 +1,4 @@
-base_project
+Rails Base Project
 ============
 
-Base Project Init
+Base project in Rails. Initial code to next projects.
